@@ -1,0 +1,5 @@
+com\tiendaAutomovil\controllers\AutomovilController.class
+com\tiendaAutomovil\entities\Automovil.class
+com\tiendaAutomovil\repository\AutomovilRepository.class
+com\tiendaAutomovil\persistence\database\DatabaseConnector.class
+com\tiendaAutomovil\TiendaAutomovil.class
