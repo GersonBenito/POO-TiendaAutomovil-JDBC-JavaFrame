@@ -5,10 +5,9 @@ package com.tiendaAutomovil.entities;
  * @author Gerson Benito
  */
 public class Automovil {
-    private Long id;
+    private int id;
     private String modelo;
     private String marca;
-    private String fabricante;
     private String motor;
     private String color;
     private String placa;
@@ -18,11 +17,10 @@ public class Automovil {
     public Automovil() {
     }
 
-    public Automovil(Long id, String modelo, String fabricante, String motor, String marca, String color, String placa, int numero_puerta, double precio) {
+    public Automovil(int id, String modelo, String marca, String motor, String color, String placa, int numero_puerta, double precio) {
         this.id = id;
         this.modelo = modelo;
         this.marca = marca;
-        this.fabricante = fabricante;
         this.motor = motor;
         this.color = color;
         this.placa = placa;
@@ -30,11 +28,11 @@ public class Automovil {
         this.precio = precio;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,14 +42,6 @@ public class Automovil {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
-
-    public String getFabricante() {
-        return fabricante;
-    }
-
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
     }
 
     public String getMotor() {

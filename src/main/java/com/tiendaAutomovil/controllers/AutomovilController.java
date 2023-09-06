@@ -23,7 +23,19 @@ public class AutomovilController {
         return automovilRepository.findAll();
     }
     
-    public void save(Automovil automovil){
+    public void save(
+        String modelo, String marca, String motor, String color,
+        String placa, int numero_puerta, double precio
+    ){
+        Automovil automovil = new Automovil();
+        automovil.setId(0);
+        automovil.setModelo(modelo);
+        automovil.setMarca(marca);
+        automovil.setMotor(motor);
+        automovil.setColor(color);
+        automovil.setPlaca(placa);
+        automovil.setNumero_puerta(numero_puerta);
+        automovil.setPrecio(precio);
         automovilRepository.save(automovil);
     }
     

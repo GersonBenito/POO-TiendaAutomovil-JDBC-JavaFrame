@@ -1,10 +1,6 @@
-package com.tiendaAutomovil.persistence.database;
+package com.tiendaAutomovil.utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  *
@@ -24,6 +20,7 @@ public class DatabaseConnector {
     private static DatabaseConnector databaseConnector;
     private Connection connection = null;
     private Statement statement = null;
+    private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     
     private DatabaseConnector(){
@@ -51,7 +48,7 @@ public class DatabaseConnector {
             connection = DriverManager.getConnection(url, username, password);
             statement = connection.createStatement();
             
-            
+
             System.out.println("Coneccion a la base de datos exitoso");
             
         }catch(SQLException e){
@@ -75,12 +72,27 @@ public class DatabaseConnector {
         
         return resultSet;
     }
+
+    public PreparedStatement executeQuerySQL(String query, int type){
+        try{
+            preparedStatement = connection.prepareStatement(query);
+            //resultSet.next();
+        }catch(SQLException e){
+            System.out.println("Error al ejecutar el script SQL " + e.getMessage());
+        }
+
+        return preparedStatement;
+    }
     
-    public void disconnectDatabase(){
+    public void disconnectDatabase(int type){
         try{
             connection.close();
             statement.close();
-            resultSet.close();
+            if(type == 1){
+                resultSet.close();
+            }else{
+                preparedStatement.close();
+            }
             System.out.println("Desconectandose de la base de datos ...");
         }catch(SQLException e){
             System.out.println("Error al desconectarse " + e.getMessage());

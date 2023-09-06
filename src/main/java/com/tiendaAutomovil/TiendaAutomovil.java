@@ -15,6 +15,12 @@ public class TiendaAutomovil {
     public static void main(String[] args) {
         // crear una instancia al controlador
         AutomovilController automovilControlador = new AutomovilController();
+
+        // guardar
+        automovilControlador.save("Lamborghini Huracán", "Lamborghini",
+                "639 CV a 8000 rpm y 565 nm a 6500 rpm",
+                "Verde","P 1-DBE",2, 262.042
+        );
         
         ArrayList<Automovil> automovilList = automovilControlador.findAll();
         
@@ -24,5 +30,9 @@ public class TiendaAutomovil {
                 System.out.println("Marca: " + automovil.getMarca());
             }
         }
+
+        // obtener un solo registro
+        Automovil automovil = automovilControlador.findById(2L);
+        System.out.println("Registro find by id: " + automovil.getModelo());
     }
 }
