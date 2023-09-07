@@ -15,7 +15,7 @@ public class AutomovilController {
     private static AutomovilRepository automovilRepository = new AutomovilRepository();
     
     // obtener un registro por id
-    public Automovil findById(Long id){
+    public Automovil findById(int id){
         return automovilRepository.findById(id);
     }
     
@@ -39,11 +39,23 @@ public class AutomovilController {
         automovilRepository.save(automovil);
     }
     
-    public void deleteById(Long id){
+    public void deleteById(int id){
         automovilRepository.deleteById(id);
     }
     
-    public void update(Automovil automovil, Long id){
+    public void update(
+            int id, String modelo, String marca, String motor, String color,
+            String placa, int numero_puerta, double precio
+    ){
+        Automovil automovil = new Automovil();
+        automovil.setModelo(modelo);
+        automovil.setMarca(marca);
+        automovil.setMotor(motor);
+        automovil.setColor(color);
+        automovil.setPlaca(placa);
+        automovil.setNumero_puerta(numero_puerta);
+        automovil.setPrecio(precio);
+
         automovilRepository.update(automovil, id);
     }
 }

@@ -17,10 +17,10 @@ public class TiendaAutomovil {
         AutomovilController automovilControlador = new AutomovilController();
 
         // guardar
-        automovilControlador.save("Lamborghini Huracán", "Lamborghini",
+        /*automovilControlador.save("Lamborghini Huracán", "Lamborghini",
                 "639 CV a 8000 rpm y 565 nm a 6500 rpm",
                 "Verde","P 1-DBE",2, 262.042
-        );
+        );*/
         
         ArrayList<Automovil> automovilList = automovilControlador.findAll();
         
@@ -32,7 +32,15 @@ public class TiendaAutomovil {
         }
 
         // obtener un solo registro
-        Automovil automovil = automovilControlador.findById(2L);
+        Automovil automovil = automovilControlador.findById(2);
         System.out.println("Registro find by id: " + automovil.getModelo());
+
+        // eliminar un registro
+        //automovilControlador.deleteById(4);
+
+        // actualizar registro
+        automovilControlador.update(5, "Lamborghini Huracán", "Lamborghini",
+                "639 CV a 8000 rpm y 565 nm a 6500 rpm",
+                "Verde","P 1-DBE",2, 262.042);
     }
 }

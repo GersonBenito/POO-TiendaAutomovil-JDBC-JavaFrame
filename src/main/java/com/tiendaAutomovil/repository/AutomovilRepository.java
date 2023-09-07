@@ -18,7 +18,7 @@ public class AutomovilRepository {
     
     // aqui es donde van a ir las consultas a la base de datos
     
-    public Automovil findById(Long id){
+    public Automovil findById(int id){
         Automovil automovil = new Automovil();
         databaseconnector.connectDatabase();
         try{
@@ -101,11 +101,37 @@ public class AutomovilRepository {
         }
     }
     
-    public void deleteById(Long id){
-        // eliminar un registro
+    public void deleteById(int id){
+        databaseconnector.connectDatabase();
+        try{
+            String query = "DELETE FROM automovil WHERE id = " + id;
+            PreparedStatement preparedStatement = databaseconnector.executeQuerySQL(query,1);
+            preparedStatement.executeUpdate();
+            databaseconnector.disconnectDatabase(2);
+        }catch (SQLException e){
+            System.out.println("Error al eliminar el registro " + e.getMessage());
+            databaseconnector.disconnectDatabase(2);
+        }
     }
     
-    public void update(Automovil automovil, Long id){
-        // actualizar un registro
+    public void update(Automovil automovil, int id){
+        databaseconnector.connectDatabase();
+        try{
+            String query = "UPDATE automovil set modelo = ?, marca = ?, motor = ?, color = ?, placa = ?, numero_puerta = ?, precio = ? WHERE id = ?";
+            PreparedStatement preparedStatement = databaseconnector.executeQuerySQL(query, 1);
+            preparedStatement.setString(1, automovil.getModelo());
+            preparedStatement.setString(2, automovil.getMarca());
+            preparedStatement.setString(3, automovil.getMotor());
+            preparedStatement.setString(4, automovil.getColor());
+            preparedStatement.setString(5, automovil.getPlaca());
+            preparedStatement.setInt(6, automovil.getNumero_puerta());
+            preparedStatement.setDouble(7, automovil.getPrecio());
+            preparedStatement.setInt(8, id);
+            preparedStatement.executeUpdate();
+            databaseconnector.disconnectDatabase(2);
+        }catch (SQLException e){
+            System.out.println("Error al actualizar " + e.getMessage());
+            databaseconnector.disconnectDatabase(2);
+        }
     }
 }
